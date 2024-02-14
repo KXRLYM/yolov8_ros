@@ -116,6 +116,17 @@ def generate_launch_description():
         ]
     )
 
+    depth_node = Node(
+        package="yolov8_ros",
+        executable="depth_converter_node",
+        name="depth_converter_node"
+    )
+
+    rgb_node = Node(
+        package="yolov8_ros",
+        executable="image_converter_node",
+        name="image_converter_node"
+    )
     ld = LaunchDescription()
 
     ld.add_action(model_cmd)
@@ -130,5 +141,7 @@ def generate_launch_description():
     ld.add_action(detector_node_cmd)
     ld.add_action(tracking_node_cmd)
     ld.add_action(debug_node_cmd)
+    ld.add_action(depth_node)
+    ld.add_action(rgb_node)
 
     return ld
